@@ -4,7 +4,7 @@ const { TaskModel } = require("../models")
 module.exports = async function createTaskController(req, res) {
   // console.log(req.body)
   // await createTaskService(req.body);
-  // return res.send(200);
+  // return res.Status(200);
 
   const task = new TaskModel(req.body);
   await task.save();
