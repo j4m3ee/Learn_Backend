@@ -1,4 +1,4 @@
-const {deleteTaskService} = require('../services')
+const {deleteTaskService} = require('../../services')
 
 module.exports = async function deleteTaskController(req,res){
     await deleteTaskService(req.params.id)

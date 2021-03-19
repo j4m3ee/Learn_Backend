@@ -1,6 +1,6 @@
 const express = require("express")
 const app = express()
-const {postRoutes,taskRoutes} = require("./routes")
+const {postRoutes,taskRoutes,userRoutes} = require("./routes")
 const mongoose = require("mongoose")
 const cors = require("cors");
 
@@ -23,6 +23,8 @@ mongoose.connect("mongodb+srv://dbUser:Jame.011@cluster0.xqyje.mongodb.net/todon
 app.use("/api",taskRoutes)
 
 app.use('/api',postRoutes)
+
+app.use('/api',userRoutes)
 
 app.listen( process.env.PORT || 1000, () => {
     console.log('🚗 Server Start.')

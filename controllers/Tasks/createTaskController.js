@@ -1,5 +1,5 @@
-const { createTaskService } = require("../services");
-const { TaskModel } = require("../models")
+const { createTaskService } = require("../../services");
+const { TaskModel } = require("../../models")
 
 module.exports = async function createTaskController(req, res) {
   // console.log(req.body)

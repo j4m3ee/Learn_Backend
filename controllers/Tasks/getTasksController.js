@@ -1,4 +1,4 @@
-const {getTasksService} = require("../services")
+const {getTasksService} = require("../../services")
 
 module.exports = async function getTasksController(req,res){
 
