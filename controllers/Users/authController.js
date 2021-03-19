@@ -8,16 +8,16 @@ const checkHash = async (myText, myHash) => {
 }
 
 module.exports = async function authController(req,res){
-    const { username, password } = req.body
-    if (!username || !password) {
+    const { userName, password } = req.body
+    if (!userName || !password) {
         return res.status(400).send({ message: 'Please try again' })
     }
-    const user = await userModel.findOne({ userName: username })
+    const user = await userModel.findOne({ userName: userName })
     checkHash(password, user.password).then(result => {
         if (result) {
             const payload = {
                 id: user._id,
-                email: user.email
+                userName: user.userName
             }
             const token = jwt.sign(payload, process.env.KEY, { expiresIn: 60 * 5 }) //expire in 5 min (60sec * 5)
             const resbody = {
