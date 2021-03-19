@@ -9,7 +9,11 @@ const checkToken = async (myToken) => {
 module.exports = async function getUserData(req,res){
     checkToken(req.headers.token).then(async result => {
         const user = await userModel.findOne({ _id: result.id })
-        return res.send(user)
+        const resBody = {
+            _id:user._id,
+            userName:user.userName
+        }
+        return res.send(resBody)
     }).catch(err => {
         if(err){
             return res.send(err)
