@@ -7,12 +7,12 @@ const checkHash = async (myText, myHash) => {
     return resultPromise
 }
 
-module.exports = async function authController(req, res) {
+module.exports = function authController(req, res) {
     const { userName, password } = req.body
     if (!userName || !password) {
         return res.status(400).send({ message: 'Please try again' })
     }
-    userModel.findOne({ userName: userName }).then(user => {
+    userModel.findOne({userName}).then(user => {
         checkHash(password, user.password).then(result => {
             if (result) {
                 const token = jwt.sign({
