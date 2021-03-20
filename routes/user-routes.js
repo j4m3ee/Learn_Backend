@@ -44,8 +44,8 @@ router.get("/user", (req, res) => getUserData(req, res))
 // })
 
 router.get("/token", (req, res) => {
-    const testToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiU3VyYXdpdCIsIm9jY3VwYXRpb24iOiJFbmdpbmVlciIsImFnZSI6MjQsImlhdCI6MTYxNTgwNTk4MywiZXhwIjoxNjE1ODA2MjgzfQ.OgK2K1y91sZyE3tVgj8Jq2Se1bEK8QI9d9sZNnW1vVQ"
-    checkToken(testToken, process.env.KEY).then(result => {
+    const Token = req.headers.token
+    checkToken(Token, process.env.KEY).then(result => {
         res.send(result)
     }).catch(err => {
         res.send(err)
