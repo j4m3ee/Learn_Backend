@@ -21,7 +21,7 @@ module.exports = function createUserController(req, res) {
             }, process.env.KEY, { expiresIn: 60 * 5 }) //expire in 5 min (60sec * 5)
             return res.send({ auth: true, token: token })
         } else { 
-            return res.send({ message: `${userName} is aready have.` }) 
+            return res.send({ auth: false, message: `${userName} is aready have.` }) 
         }
     })
 
