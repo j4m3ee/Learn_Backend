@@ -3,10 +3,13 @@ const router = express.Router()
 const { getTasksController,
     createTaskController,
     updateTaskController,
-    deleteTaskController } = require("../controllers")
+    deleteTaskController,
+    getOneTaskController } = require("../controllers")
 const { TaskModel } = require("../models");
 
 router.get("/tasks", (req, res) => getTasksController(req, res))
+
+router.get('/task/:id', (req, res) => getOneTaskController(req, res))
 
 router.post("/task", (req, res) => createTaskController(req, res))
 

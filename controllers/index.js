@@ -9,6 +9,7 @@ const deleteUserController = require("./Users/deleteUserController")
 const updateUserController = require("./Users/updateUserController")
 const authController = require("./Users/authController")
 const getUserData = require("./Users/getUserData")
+const getOneTaskController = require("./Tasks/getOneTaskCotroller")
 
 module.exports = {
     getTasksController,
@@ -21,5 +22,6 @@ module.exports = {
     deleteUserController,
     updateUserController,
     authController,
-    getUserData
+    getUserData,
+    getOneTaskController
 }
