@@ -1,4 +1,4 @@
-![Heroku](https://heroku-badge.herokuapp.com/?app=learn-backend-snapm)
+![Heroku](https://heroku-badge.herokuapp.com/?app=Learn_Backend)
 
 ![Heroku](https://heroku-badge.herokuapp.com/?app=heroku-badge)
 
