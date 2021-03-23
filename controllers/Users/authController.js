@@ -10,7 +10,7 @@ const checkHash = async (myText, myHash) => {
 module.exports = function authController(req, res) {
     const { userName, password } = req.body
     if (!userName || !password) {
-        return res.status(400).send({ message: 'Please try again' })
+        return res.status(400).send({ auth: false , message: 'Missed userName or password 😮' })
     }
     userModel.findOne({ userName }).then(user => {
         checkHash(password, user.password).then(result => {
@@ -19,14 +19,14 @@ module.exports = function authController(req, res) {
                     id: user._id,
                     userName: user.userName
                 }, process.env.KEY, { expiresIn: 60 * 60 }) //expire in 5 min (60sec * 5)
-                return res.send({ auth: result, token: token })
+                return res.send({ auth: result, message: `✨ ${userName} Loged in success.`, token: token })
             } else {
-                return res.send({ auth: result, message: "Password invalid" })
+                return res.send({ auth: result, message: "🤔 Password invalid" })
             }
         }).catch(err => {
-            return res.send({ auth: false, message: "Hash invalid." })
+            return res.send({ auth: false, message: "😱 Hash invalid." })
         })
     }).catch(err => {
-        return res.send({ auth: false, message: "No user in database." })
+        return res.status(400).send({ auth: false, message: `😅 Not found '${userName}' in database. Please signup.` })
     })
 }

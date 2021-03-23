@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken')
 module.exports = function createUserController(req, res) {
     const { userName, password } = req.body
     if (!userName || !password) {
-        return res.status(400).send({ message: 'Please try again' })
+        return res.status(400).send({ auth: false , message: 'Missed userName or password 😮' })
     }
     userModel.findOne({ userName }).then(async user => {
         if (!user) {
@@ -19,9 +19,9 @@ module.exports = function createUserController(req, res) {
                 id: user._id,
                 userName: user.userName
             }, process.env.KEY, { expiresIn: 60 * 60 }) //expire in 5 min (60sec * 5)
-            return res.send({ auth: true, token: token })
+            return res.send({ auth: true, message: `✨ Create ${userName} success.`, token: token })
         } else { 
-            return res.send({ auth: false, message: `${userName} is aready have.` }) 
+            return res.status(400).send({ auth: false, message: `😅 Email : ${userName} is aready have.` }) 
         }
     })
 
