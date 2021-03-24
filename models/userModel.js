@@ -12,6 +12,12 @@ const userSchema = mongoose.Schema({
         require: true,
         min: 6,
         max: 20
+    },
+    email:{
+        type:String
+    },
+    phonenumber:{
+        type:String
     }
 })
 

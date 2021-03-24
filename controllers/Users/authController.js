@@ -27,6 +27,6 @@ module.exports = function authController(req, res) {
             return res.send({ auth: false, message: "😱 Hash invalid." })
         })
     }).catch(err => {
-        return res.status(400).send({ auth: false, message: `😅 Not found '${userName}' in database. Please signup.` })
+        return res.status(400).send({ auth: false, message: `😅 Not found '${userName}'.` })
     })
 }
