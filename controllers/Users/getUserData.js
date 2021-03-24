@@ -11,7 +11,9 @@ module.exports = async function getUserData(req,res){
         const user = await userModel.findOne({ _id: result.id })
         const resBody = {
             _id:user._id,
-            userName:user.userName
+            userName:user.userName,
+            email:user.email,
+            phonenumber:user.phonenumber
         }
         return res.send(resBody)
     }).catch(err => {
