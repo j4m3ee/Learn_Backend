@@ -18,7 +18,8 @@ const userSchema = mongoose.Schema({
     },
     phonenumber:{
         type:String
-    }
+    },
+    verify: { type: Boolean, default: false }
 })
 
 const UserModel = mongoose.model("User",userSchema)

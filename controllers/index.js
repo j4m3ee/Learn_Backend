@@ -10,6 +10,8 @@ const updateUserController = require("./Users/updateUserController")
 const authController = require("./Users/authController")
 const getUserData = require("./Users/getUserData")
 const getOneTaskController = require("./Tasks/getOneTaskCotroller")
+const sendEmailController = require('./Email/sendEmailController')
+const confirmEmailController = require('./Email/confirmEmailController')
 
 module.exports = {
     getTasksController,
@@ -23,5 +25,7 @@ module.exports = {
     updateUserController,
     authController,
     getUserData,
-    getOneTaskController
+    getOneTaskController,
+    sendEmailController,
+    confirmEmailController
 }

@@ -13,6 +13,9 @@ module.exports = function authController(req, res) {
         return res.status(400).send({ auth: false , message: 'Missed userName or password 😮' })
     }
     userModel.findOne({ userName }).then(user => {
+        if(!user.verify){
+            return res.send({ auth: false, message: `📧 Please verify your email!` })
+        }
         checkHash(password, user.password).then(result => {
             if (result) {
                 const token = jwt.sign({
