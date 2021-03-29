@@ -21,7 +21,7 @@ module.exports = function createUserController(req, res) {
         return res.status(400).send({ auth: false, message: 'Missed userName or password 😮' })
     }
     userModel.findOne({ $or:[{userName},{email}]}).then(async user => {
-        if(user) throw `😅 Username : ${userName} is aready have.`
+        if(user) throw `😅 Username or Email is aready have.`
         if (!user) {
             req.body.password = await bcrypt.hash(password, 10)
             const user = new userModel({
