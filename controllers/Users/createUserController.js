@@ -37,7 +37,7 @@ module.exports = function createUserController(req, res) {
             }, process.env.KEY, { expiresIn: 60 * 60 * 24}) //expire in 5 min (60sec * 5)
   
             sendEmail(req.body.email, "Plese verify within 24hr",
-             `https://snapm.netlify.app/edit/${token}`)
+             `https://snapm.netlify.app/verify/${token}`)
              .then(result=>{
                 return res.send({ auth: true, 
                     message: `✨ Create ${userName} success. Please verify email!`,
