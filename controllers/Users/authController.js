@@ -9,9 +9,14 @@ const checkHash = async (myText, myHash) => {
 
 module.exports = function authController(req, res) {
     const { userName, password } = req.body
-    if (!userName || !password) {
-        return res.status(400).send({ auth: false , message: 'Missed userName or password 😮' })
+    try{
+        if (!userName || !password) {
+            throw 'Missed userName or password 😮'
+        }
+    }catch (err) {
+        return res.status(400).send({ auth: false , message: err })
     }
+
     userModel.findOne({ userName }).then(user => {
         if(!user.verify){
             return res.send({ auth: false, message: `📧 Please verify your email!` })

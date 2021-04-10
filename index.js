@@ -13,7 +13,7 @@ app.use(express.urlencoded({ extended: true }))
 //     console.log("Database connected at port 27017")
 // })
 
-mongoose.connect("mongodb+srv://dbUser:Jame.011@cluster0.xqyje.mongodb.net/todona?retryWrites=true&w=majority"
+mongoose.connect(process.env.DATABASE
     , { useUnifiedTopology: true , useNewUrlParser: true ,useFindAndModify: false}).then(() => {
         console.log("✔ Database connected")
     }).catch((error) => {

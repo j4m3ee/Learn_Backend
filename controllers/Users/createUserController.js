@@ -17,9 +17,17 @@ const sendEmail = async (toMail, message, token) => {
 
 module.exports = function createUserController(req, res) {
     const { userName, password, email } = req.body
-    if (!userName || !password) {
-        return res.status(400).send({ auth: false, message: 'Missed userName or password 😮' })
+    try{
+        if (!userName || !password) {
+            throw 'Missed userName or password 😮'
+        }
+        if(password.length < 6){
+            throw 'Your password not secure 🤨'
+        }
+    }catch (err) {
+        return res.status(400).send({ auth: false , message: err })
     }
+
     userModel.findOne({ $or:[{userName},{email}]}).then(async user => {
         if(user) throw `😅 Username or Email is aready have.`
         if (!user) {
@@ -53,4 +61,5 @@ module.exports = function createUserController(req, res) {
 
     // https://snapm.netlify.app/edit/
     // https://learn-backend-snapm.herokuapp.com/api/verify/${token}
+    // Credit : https://medium.com/@nickroach_50526/sending-emails-with-node-js-using-smtp-gmail-and-oauth2-316fe9c790a1
 }
