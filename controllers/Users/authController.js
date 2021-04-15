@@ -27,7 +27,7 @@ module.exports = function authController(req, res) {
                     id: user._id,
                     userName: user.userName
                 }, process.env.KEY, { expiresIn: 60 * 60 }) //expire in 5 min (60sec * 5)
-                return res.send({ auth: result, message: `✨ ${userName} Loged in success.`, token: token })
+                return res.send({ auth: result, message: `✨ Logged in success.`, token: token ,detail: `😅 '${userName}' Logged in success.`})
             } else {
                 return res.send({ auth: result, message: "🤔 Password invalid" })
             }
@@ -35,6 +35,6 @@ module.exports = function authController(req, res) {
             return res.send({ auth: false, message: "😱 Hash invalid." })
         })
     }).catch(err => {
-        return res.status(400).send({ auth: false, message: `😅 Not found '${userName}'.` })
+        return res.status(400).send({ auth: false, message: `😅 Not found your account.` ,detail: `😅 Not found '${userName}'.`})
     })
 }
