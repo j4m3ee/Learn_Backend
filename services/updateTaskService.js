@@ -6,11 +6,11 @@ module.exports = async function updateTaskService(id, data) {
     var donePost = user.donePost
     var undonePost = user.undonePost
     if (data.isFinished == 'true') {
-        donePost += 1
-        undonePost -= 1
-    } else {
         donePost -= 1
         undonePost += 1
+    } else {
+        donePost += 1
+        undonePost -= 1
     }
     await userModel.updateOne({ _id: task.user_id }, {
         donePost: donePost,
