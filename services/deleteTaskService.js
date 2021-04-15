@@ -1,5 +1,6 @@
 const { TaskModel } = require("../models")
 
 module.exports = async function deleteTaskService(id) {
-    return TaskModel.deleteOne({ _id: id })
+    const task = await TaskModel.deleteOne({ _id: id })
+    console.log(task)
 }
