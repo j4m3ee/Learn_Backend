@@ -4,12 +4,15 @@ const { getTasksController,
     createTaskController,
     updateTaskController,
     deleteTaskController,
-    getOneTaskController } = require("../controllers")
+    getOneTaskController, 
+    analyticsTaskController} = require("../controllers")
 const { TaskModel } = require("../models");
 
 router.get("/tasks", (req, res) => getTasksController(req, res))
 
 router.get('/task/:id', (req, res) => getOneTaskController(req, res))
+
+router.get('/taskAnaly/:id', (req, res) => analyticsTaskController(req, res))
 
 router.post("/task", (req, res) => createTaskController(req, res))
 

@@ -33,7 +33,7 @@ module.exports = function createUserController(req, res) {
         if (!user) {
             req.body.password = await bcrypt.hash(password, 10)
             const user = new userModel({
-                ...req.body,
+                ...req.body
             })
             await user.save()
             // const token = jwt.sign({

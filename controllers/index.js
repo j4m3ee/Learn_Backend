@@ -12,6 +12,7 @@ const getUserData = require("./Users/getUserData")
 const getOneTaskController = require("./Tasks/getOneTaskCotroller")
 const sendEmailController = require('./Email/sendEmailController')
 const confirmEmailController = require('./Email/confirmEmailController')
+const analyticsTaskController = require('./Tasks/analyticsTaskController')
 
 module.exports = {
     getTasksController,
@@ -27,5 +28,6 @@ module.exports = {
     getUserData,
     getOneTaskController,
     sendEmailController,
-    confirmEmailController
+    confirmEmailController,
+    analyticsTaskController
 }

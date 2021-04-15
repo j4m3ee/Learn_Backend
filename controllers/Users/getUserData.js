@@ -13,7 +13,11 @@ module.exports = async function getUserData(req,res){
             _id:user._id,
             userName:user.userName,
             email:user.email,
-            phonenumber:user.phonenumber
+            phonenumber:user.phonenumber,
+            countPost:user.countPost,
+            donePost:user.donePost,
+            undonePost:user.undonePost
+
         }
         return res.send(resBody)
     }).catch(err => {

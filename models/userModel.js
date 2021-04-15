@@ -19,7 +19,10 @@ const userSchema = mongoose.Schema({
     phonenumber:{
         type:String
     },
-    verify: { type: Boolean, default: false }
+    verify: { type: Boolean, default: false },
+    countPost: { type: Number, default: 0 },
+    donePost: { type: Number, default: 0 },
+    undonePost: { type: Number, default: 0 }
 })
 
 const UserModel = mongoose.model("User",userSchema)

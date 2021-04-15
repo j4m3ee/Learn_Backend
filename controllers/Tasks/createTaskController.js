@@ -1,13 +1,13 @@
 const { createTaskService } = require("../../services");
-const { TaskModel } = require("../../models")
+const { TaskModel,userModel } = require("../../models")
 
 module.exports = async function createTaskController(req, res) {
-  // console.log(req.body)
-  // await createTaskService(req.body);
-  // return res.Status(200);
-
+  const user = await userModel.findOne({_id:req.body.user_id})
+  await userModel.updateOne({_id:req.body.user_id},{
+    countPost:user.countPost+1,
+    undonePost:user.undonePost+1
+  })
   const task = new TaskModel(req.body);
   await task.save();
-  console.log(task)
   return res.send(task)
 };
