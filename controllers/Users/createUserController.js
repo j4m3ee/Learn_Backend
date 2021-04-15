@@ -2,58 +2,68 @@ const { userModel } = require("../../models")
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const transporter = require('../Email/emailModule')
+const validator = require('validator');
 
 const sendEmail = async (toMail, message, token) => {
     const result = await transporter.sendMail({
         from: `"TODONA 📝" <${process.env.EMAILUSER}>`, // sender address
         to: toMail, // list of receivers
-        subject: "Registered Successfully ✔", // Subject line
+        subject: "📧 Mail verify ✔", // Subject line
         text: message, // plain text body
-        html: `<h1>${message}</h1>
-        <a href=${token}>Click here!</a>`, // html body
+        html: `<h2>🎀 Thank for registered to TODONA.</h2>
+        <span>${message}</span>
+        <a href=${token}>Click here </a>
+        <span>for verify your account!</span>`, // html body  
     })
     return result
 }
 
 module.exports = function createUserController(req, res) {
     const { userName, password, email } = req.body
-    try{
+    try {
         if (!userName || !password) {
             throw 'Missed userName or password 😮'
         }
-        if(password.length < 6){
-            throw 'Your password not secure 🤨'
+        if(!validator.isAlphanumeric(userName)){
+            throw 'Enter username only alphabets and numeric 😚'
         }
-    }catch (err) {
-        return res.status(400).send({ auth: false , message: err })
+        if (!validator.isStrongPassword(password, { 
+            minLength: 8, 
+            minLowercase: 1, 
+            minUppercase: 1, 
+            minNumbers: 1, 
+            minSymbols: 1
+        })) {
+            throw 'Your password not strong 🤨'
+        }
+        
+    } catch (err) {
+        return res.status(400).send({ auth: false, message: err })
     }
 
-    userModel.findOne({ $or:[{userName},{email}]}).then(async user => {
-        if(user) throw `😅 Username or Email is aready have.`
+    userModel.findOne({ $or: [{ userName }, { email }] }).then(async user => {
+        if (user) throw `😅 Username or Email is aready have.`
         if (!user) {
             req.body.password = await bcrypt.hash(password, 10)
             const user = new userModel({
                 ...req.body
             })
             await user.save()
-            // const token = jwt.sign({
-            //     id: user._id,
-            //     userName: user.userName
-            // }, process.env.KEY, { expiresIn: 60 * 60 }) //expire in 5 min (60sec * 5)
             const token = jwt.sign({
                 id: user._id
-            }, process.env.KEY, { expiresIn: 60 * 60 * 24}) //expire in 5 min (60sec * 5)
-  
-            sendEmail(req.body.email, "Plese verify within 24hr",
-             `https://snapm.netlify.app/verify/${token}`)
-             .then(result=>{
-                return res.send({ auth: true, 
-                    message: `✨ Create ${userName} success. Please verify email!`,
-                    result: result
+            }, process.env.KEY, { expiresIn: 60 * 60 * 24 }) //expire in 5 min (60sec * 5)
+
+            sendEmail(req.body.email, "Please verify within 24hr",
+                `https://snapm.netlify.app/verify/${token}`)
+                .then(result => {
+                    return res.send({
+                        auth: true,
+                        message: `✨ Create ${userName} success. Please verify email!`,
+                        result: result
+                    })
+                }).catch(err => {
+                    throw err
                 })
-            }).catch(err => {
-                throw err
-            })
         }
     }).catch((err) => {
         return res.status(400).send({ auth: false, message: err })
