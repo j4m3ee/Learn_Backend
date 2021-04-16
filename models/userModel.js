@@ -19,7 +19,8 @@ const userSchema = mongoose.Schema({
     phonenumber:{
         type:String
     },
-    verify: { type: Boolean, default: false }
+    verify: { type: Boolean, default: false },
+    profileURL: {type: String, default: "https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg"}
 })
 
 const UserModel = mongoose.model("User",userSchema)
