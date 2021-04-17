@@ -20,7 +20,9 @@ const userSchema = mongoose.Schema({
         type:String
     },
     verify: { type: Boolean, default: false },
-    profileURL: {type: String}
+    profileURL: {
+        type: String
+    }
 })
 
 const UserModel = mongoose.model("User",userSchema)
