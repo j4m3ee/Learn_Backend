@@ -20,7 +20,7 @@ const userSchema = mongoose.Schema({
         type:String
     },
     verify: { type: Boolean, default: false },
-    profileURL: {type: String, default: "https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg"}
+    profileURL: {type: String}
 })
 
 const UserModel = mongoose.model("User",userSchema)
