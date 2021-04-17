@@ -21,7 +21,7 @@ const userSchema = mongoose.Schema({
     },
     verify: { type: Boolean, default: false },
     profileURL: {
-        type: String
+        type: String, default: ""
     }
 })
 
