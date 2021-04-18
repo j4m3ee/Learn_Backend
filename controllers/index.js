@@ -13,6 +13,8 @@ const getOneTaskController = require("./Tasks/getOneTaskCotroller")
 const sendEmailController = require('./Email/sendEmailController')
 const confirmEmailController = require('./Email/confirmEmailController')
 const analyticsTaskController = require('./Tasks/analyticsTaskController')
+const sendForgotPassController = require('./Email/sendForgotPassController')
+const confirmForgotPassController = require('./Email/confirmForgotPassController')
 
 module.exports = {
     getTasksController,
@@ -29,5 +31,7 @@ module.exports = {
     getOneTaskController,
     sendEmailController,
     confirmEmailController,
-    analyticsTaskController
+    analyticsTaskController,
+    sendForgotPassController,
+    confirmForgotPassController
 }

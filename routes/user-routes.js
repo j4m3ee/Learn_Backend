@@ -4,7 +4,7 @@ const { getUserController,
     deleteUserController,
     updateUserController,
     authController,
-    getUserData } = require("../controllers")
+    getUserData} = require("../controllers")
 const router = express.Router()
 
 //Token
