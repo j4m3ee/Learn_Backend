@@ -18,7 +18,7 @@ router.get("/users", (req, res) => getUserController(req, res))
 
 router.post("/user", (req, res) => createUserController(req, res))
 
-router.delete("/user/:id", async (req, res) => deleteUserController(req, res))
+router.delete("/user", async (req, res) => deleteUserController(req, res))
 
 router.put("/user", (req, res) => updateUserController(req, res))
 
