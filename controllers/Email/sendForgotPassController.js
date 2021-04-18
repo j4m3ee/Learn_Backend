@@ -29,7 +29,7 @@ module.exports = function sendForgotPassController(req, res) {
             }, process.env.KEY, { expiresIn: 60 * 60 * 24 }) //expire in 24 hr
 
             sendEmail(email, "Please recovery within 24hr.",
-                `http://localhost:3000/recovery/${token}`)
+                `https://snapm.netlify.app/recovery/${token}`)
                 .then(result => {
                     return res.send({
                         auth: true,
