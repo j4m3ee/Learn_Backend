@@ -1,8 +1,6 @@
 const { userModel } = require("../../models")
-const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const transporter = require('../Email/emailModule')
-const validator = require('validator');
 
 const sendEmail = async (toMail, message, token) => {
     const result = await transporter.sendMail({

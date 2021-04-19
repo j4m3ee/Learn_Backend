@@ -22,10 +22,10 @@ module.exports = function createUserController(req, res) {
     const { userName, password, email } = req.body
     try {
         if (!userName || !password) {
-            throw 'Missed userName or password 😮'
+            throw 'Missed userName or password. 😮'
         }
         if(!validator.isAlphanumeric(userName)){
-            throw 'Enter username only alphabets and numeric 😚'
+            throw 'Enter username only alphabets and numeric. 😚'
         }
         if (!validator.isStrongPassword(password, { 
             minLength: 8, 
@@ -34,7 +34,7 @@ module.exports = function createUserController(req, res) {
             minNumbers: 1, 
             minSymbols: 1
         })) {
-            throw 'Your password not strong 🤨'
+            throw 'Your password not strong. 🤨'
         }
         
     } catch (err) {
@@ -53,7 +53,7 @@ module.exports = function createUserController(req, res) {
                 id: user._id
             }, process.env.KEY, { expiresIn: 60 * 60 * 24 }) //expire in 5 min (60sec * 5)
 
-            sendEmail(req.body.email, "Please verify within 24hr",
+            sendEmail(req.body.email, "Please verify within 24hr.",
                 `https://snapm.netlify.app/verify/${token}`)
                 .then(result => {
                     return res.send({
