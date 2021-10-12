@@ -1,5 +1,5 @@
 
-# 🎉Deploy🎉
+# 🎉Deployed🎉
 
 ### ✨ Database [Click](https://cloud.mongodb.com/)
 
