@@ -33,7 +33,7 @@ mongoose
     useFindAndModify: false,
   })
   .then(() => {
-    console.log("✔ Database connected 2");
+    console.log("✔ Database connected");
   })
   .catch((error) => {
     console.log(error);
