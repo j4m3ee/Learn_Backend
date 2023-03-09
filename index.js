@@ -3,7 +3,7 @@ const app = express();
 const { taskRoutes, userRoutes, emailRoutes } = require("./routes");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const morgan = require('morgan')
+const morgan = require("morgan");
 
 var whitelist = ["http://localhost:3000", "https://todona.surawit.com"];
 var corsOptions = {
@@ -11,7 +11,7 @@ var corsOptions = {
     if (whitelist.indexOf(origin) !== -1) {
       callback(null, true);
     } else {
-      callback(new Error("Not allowed by CORS"));
+      callback("Not allowed by CORS");
     }
   },
 };
@@ -20,11 +20,9 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// mongoose.connect("mongodb://localhost:27017/todona").then(()=>{
-//     console.log("Database connected at port 27017")
-// })
-
-app.use(morgan(':method :url :status :res[content-length] - :response-time ms'))
+app.use(
+  morgan(":method :url :status :res[content-length] - :response-time ms")
+);
 
 mongoose
   .connect(process.env.DATABASE, {
