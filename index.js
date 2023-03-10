@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const morgan = require("morgan");
 
-var whitelist = ["http://localhost:3000", "https://todona.surawit.com"];
+var whitelist = ["http://localhost:3000", "https://todona.surawit.com", "https://todona.surawit.fish" ];
 var corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.indexOf(origin) !== -1) {
