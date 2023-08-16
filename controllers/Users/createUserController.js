@@ -42,6 +42,7 @@ module.exports = function createUserController(req, res) {
     }
 
     userModel.findOne({ $or: [{ userName }, { email }] }).then(async user => {
+        const base_url = 'https://todona.surawit.com';
         if (user) throw `😅 Username or Email is aready have.`
         if (!user) {
             req.body.password = await bcrypt.hash(password, 10)
@@ -54,7 +55,7 @@ module.exports = function createUserController(req, res) {
             }, process.env.KEY, { expiresIn: 60 * 60 * 24 }) //expire in 5 min (60sec * 5)
 
             sendEmail(req.body.email, "Please verify within 24hr.",
-                `https://snapm.netlify.app/verify/${token}`)
+                `${base_url}/verify/${token}`)
                 .then(result => {
                     return res.send({
                         auth: true,
